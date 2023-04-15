@@ -1,6 +1,10 @@
+import type { DynamicModule } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import type { MongooseModuleFactoryOptions } from '@nestjs/mongoose';
+import type {
+  ModelDefinition,
+  MongooseModuleFactoryOptions,
+} from '@nestjs/mongoose';
 import { MongooseModule } from '@nestjs/mongoose';
 import type { EnvironmentVariables } from '../config';
 import { ConfigModule } from '../config';
@@ -18,4 +22,8 @@ import { ConfigModule } from '../config';
     }),
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule {
+  public static forFeature(models: ModelDefinition[]): DynamicModule {
+    return MongooseModule.forFeature(models);
+  }
+}
