@@ -1,15 +1,15 @@
 version: '3'
 services:
-  mongodb_container:
+  database:
     image: mongo:latest
-    container_name: 'mongodb'
+    container_name: 'database'
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
     ports:
       - 27017:27017
     volumes:
-      - mongodb_data:/data/db
+      - database_data:/data/db
 
 volumes:
-  mongodb_data:
+  database_data:
