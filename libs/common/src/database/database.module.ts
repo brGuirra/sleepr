@@ -6,18 +6,15 @@ import type {
   MongooseModuleFactoryOptions,
 } from '@nestjs/mongoose';
 import { MongooseModule } from '@nestjs/mongoose';
-import type { EnvironmentVariables } from '../config';
-import { ConfigModule } from '../config';
 
 @Module({
   imports: [
     MongooseModule.forRootAsync({
-      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (
-        configService: ConfigService<EnvironmentVariables>,
+        configService: ConfigService,
       ): MongooseModuleFactoryOptions => ({
-        uri: configService.get('MONGO_DB_URI', { infer: true }),
+        uri: configService.get<string>('MONGO_DB_URI'),
       }),
     }),
   ],
