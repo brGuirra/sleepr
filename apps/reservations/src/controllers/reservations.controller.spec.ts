@@ -1,3 +1,4 @@
+import { JwtAuthGuard } from '@app/common';
 import type { TestingModule } from '@nestjs/testing';
 import { Test } from '@nestjs/testing';
 import { ReservationsService } from '../services';
@@ -22,7 +23,12 @@ describe('ReservationsController', () => {
           },
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(JwtAuthGuard)
+      .useValue({
+        canActivate: jest.fn(() => true),
+      })
+      .compile();
 
     reservationsController = module.get<ReservationsController>(
       ReservationsController,

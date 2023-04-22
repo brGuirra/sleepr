@@ -1,3 +1,4 @@
+import { JwtAuthGuard } from '@app/common';
 import {
   Body,
   Controller,
@@ -6,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateReservationDto, UpdateReservationDto } from '../dto';
 import type { ReservationDocument } from '../models';
@@ -15,6 +17,7 @@ import { ReservationsService } from '../services';
 export class ReservationsController {
   constructor(private readonly reservationsService: ReservationsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   public async create(
     @Body() createReservationDto: CreateReservationDto,

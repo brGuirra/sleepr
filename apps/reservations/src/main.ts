@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import * as cookieParser from 'cookie-parser';
 import { Logger } from 'nestjs-pino';
 import type { ReservationsEnvironmentVariables } from './config';
 import { ReservationsModule } from './reservations.module';
@@ -12,6 +13,7 @@ async function bootstrap(): Promise<void> {
   const configService =
     app.get<ConfigService<ReservationsEnvironmentVariables>>(ConfigService);
 
+  app.use(cookieParser());
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
