@@ -2,7 +2,7 @@ import { DatabaseModule } from '@app/common';
 import { Module } from '@nestjs/common';
 import { UsersController } from './controllers/';
 import { UserDocument, UserSchema } from './models';
-import { UsersRepository } from './providers/users.repository';
+import { UsersRepository } from './providers';
 import { UsersService } from './services';
 
 @Module({
@@ -14,5 +14,6 @@ import { UsersService } from './services';
   ],
   controllers: [UsersController],
   providers: [UsersService, UsersRepository],
+  exports: [UsersService],
 })
 export class UsersModule {}

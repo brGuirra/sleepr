@@ -4,7 +4,7 @@ services:
     image: mongo:latest
     container_name: database
     environment:
-      MONGO_INITDB_DATABASE: ${MONGO_DB_DATABASE_NAME}
+      MONGO_INITDB_DATABASE: sleepr
     ports:
       - 27017:27017
     volumes:
