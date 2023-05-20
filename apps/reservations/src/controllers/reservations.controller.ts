@@ -1,4 +1,4 @@
-import { JwtAuthGuard } from '@app/common';
+import { JwtAuthGuard, User, UserDto } from '@app/common';
 import {
   Body,
   Controller,
@@ -21,8 +21,9 @@ export class ReservationsController {
   @Post()
   public async create(
     @Body() createReservationDto: CreateReservationDto,
+    @User() user: UserDto,
   ): Promise<ReservationDocument> {
-    return this.reservationsService.create(createReservationDto);
+    return this.reservationsService.create(createReservationDto, user._id);
   }
 
   @Get()

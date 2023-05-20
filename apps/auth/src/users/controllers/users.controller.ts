@@ -1,5 +1,5 @@
+import { User } from '@app/common';
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { User } from '../../decorators';
 import { JwtAuthGuard } from '../../guards';
 import { CreateUserDto } from '../dto';
 import { UserDocument } from '../models';

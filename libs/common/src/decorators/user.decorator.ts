@@ -1,6 +1,6 @@
 import type { ExecutionContext } from '@nestjs/common';
 import { createParamDecorator } from '@nestjs/common';
-import type { UserDocument } from '../users/models';
+import type { UserDocument } from 'apps/auth/src/users/models';
 
 const getUserByContext = (context: ExecutionContext): UserDocument => {
   return context.switchToHttp().getRequest().user;

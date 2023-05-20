@@ -11,11 +11,12 @@ export class ReservationsService {
 
   public async create(
     createReservationDto: CreateReservationDto,
+    userId: string,
   ): Promise<ReservationDocument> {
     return this.reservationsRepository.create({
       ...createReservationDto,
       timestamp: new Date(),
-      userId: '123456',
+      userId,
     });
   }
 

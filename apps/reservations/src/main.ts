@@ -24,4 +24,5 @@ async function bootstrap(): Promise<void> {
 
   await app.listen(configService.get('PORT') as number);
 }
+
 void bootstrap();
