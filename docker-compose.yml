@@ -40,5 +40,21 @@ services:
       - ./apps/auth/.env
     volumes:
       - .:/usr/src/app
+  payments:
+    build:
+      context: .
+      dockerfile: ./apps/payments/Dockerfile
+      target: development
+    command: pnpm start:dev payments
+    container_name: payments
+    depends_on:
+      - database
+    ports:
+      - 3003:3003
+    env_file:
+      - ./apps/payments/.env
+    volumes:
+      - .:/usr/src/app
+
 volumes:
   database_data:
